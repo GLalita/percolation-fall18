@@ -1,22 +1,62 @@
-Your name
-Your netid
-
-Copy/Paste results from PercolationStats using PercolationDFS
-
+Grace Patel
+glp16
 
 Copy/Paste results from PercolationStats using PercolationDFSFast
 
+grid	mean	stddev	time
+100	0.593	0.014	0.060
+200	0.591	0.010	0.089
+400	0.590	0.006	0.555
+800	0.594	0.004	3.786
+
+*java.lang.StackOverflow Error*
+
 
 Copy/Paste results from PercolationStats using PercolationBFS
+
+grid	mean	stddev	time
+100		0.593	0.014	0.061
+200		0.591	0.010	0.105
+400		0.590	0.006	0.654
+800		0.594	0.004	4.385
+1600	0.592	0.002	25.721
+3200	0.593	0.001	146.634
 
 
 Copy/Paste results from PercolationStats using PercolationUF 
 with the QuickUWPC UnionFind implementation.
 
+grid	mean	stddev	time
+100		0.593	0.014	0.049
+200		0.591	0.010	0.114
+400		0.590	0.006	0.621
+800		0.594	0.004	3.370
+1600	0.592	0.002	18.759
+3200	0.593	0.001	94.997
+
 1. How does doubling the grid size affect running time (keeping # trials fixed)
+When the grid size is double, the running time seems to increase by an approximate factor
+of 5.
 
 
 2. How does doubling the number of trials affect running time.
+The time for a trial will stay constant no matter how many trials have run prior to the current
+trial.  Therefore, when the number of trials doubles, the running time will also double.
 
 
 3. Estimate the largest grid size you can run in 24 hours with 20 trials. Explain your reasoning.
+
+From analyzing the benchmark times from the UnionFind implementation, we see that doubling the size 
+increases running time by a factor of 5. In 24 hours, there are 86,400 seconds in a day. To determine
+when the run time will be 86,400 seconds (or less) we can multiply the runtime when the grid size is 3200
+by 5 x times that are possible without exceeding 86,400 seconds and that will be the number of times we 
+double the grid size. The maximum grid size will be 3200(2^n).
+6400 ---> 475 sec
+12800 ---> 2,375 sec
+25600 ---> 11,875 sec
+51200 ---> 59,373 sec
+102,400 ---> 296,866 sec
+
+We see that n=4 because when n = 5, the runtime exceeds 86,400. Therefore, the largest grid size we can 
+run in 24 hours with 20 trials is 102,400.
+

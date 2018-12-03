@@ -101,7 +101,7 @@ public class PercolationDFS implements IPercolate {
 		// out of bounds?
 		if (! inBounds(row,col)) return;
 		
-		// full or NOT open, don't process
+		// full or open, don't process
 		if (isFull(row, col) || !isOpen(row, col))
 			return;
 		
